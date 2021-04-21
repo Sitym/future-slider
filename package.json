@@ -1,5 +1,5 @@
 {
-  "name": "future-slider",
+  "name": "@sitym/future-slider",
   "version": "1.0.0",
   "description": "Lightweight react slider ",
   "main": "index.js",
