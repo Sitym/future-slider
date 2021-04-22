@@ -4,16 +4,18 @@
   "description": "Lightweight react slider ",
   "main": "packages/index.js",
   "types": "packages/index.d.ts",
+  "module": "packages/index.esm.js",
   "files": [
     "packages"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
+    "build-tsc": "tsc",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test-jest": "jest",
-    "test-jest:watch": "jest --watch"
+    "test-jest:watch": "jest --watch",
+    "build-rollup": "rollup -c"
   },
   "keywords": [
     "React",
@@ -32,6 +34,8 @@
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.13.16",
+    "@rollup/plugin-commonjs": "^18.0.0",
+    "@rollup/plugin-node-resolve": "^11.2.1",
     "@storybook/addon-actions": "^6.2.8",
     "@storybook/addon-essentials": "^6.2.8",
     "@storybook/addon-links": "^6.2.8",
@@ -54,6 +58,10 @@
     "jest": "^26.6.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "rollup": "^2.45.2",
+    "rollup-plugin-cleaner": "^1.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-typescript2": "^0.30.0",
     "ts-jest": "^26.5.5",
     "typescript": "^4.2.4"
   },

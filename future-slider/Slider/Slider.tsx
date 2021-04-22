@@ -10,10 +10,8 @@ export const MyButton: FC<ButtonProps> = ({
   style,
 }) => {
   return (
-    <>
-      <button onClick={onClick} style={style}>
-        {children}
-      </button>
-    </>
+    <button onClick={onClick} style={style}>
+      {children}
+    </button>
   );
 };
