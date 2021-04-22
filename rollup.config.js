@@ -4,7 +4,9 @@ import cleaner from 'rollup-plugin-cleaner';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import packageJson from './package.json';
+import babel from '@rollup/plugin-babel';
 
+const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 export default {
   input: 'future-slider/index.ts',
   output: [
@@ -20,14 +22,20 @@ export default {
     },
   ],
   plugins: [
+    resolve({ extensions }),
+    babel({
+      extensions,
+      babelHelpers: 'bundled',
+      include: ['future-slider/**/*'],
+    }),
     cleaner({
       targets: ['./packages'],
     }),
     peerDepsExternal(),
-    resolve(),
-    commonjs(),
+    commonjs({ extensions: ['.js', '.ts'] }),
     typescript({
       exclude: ['**/*.stories.tsx', '**/*.test.tsx'],
+      useTsconfigDeclarationDir: true,
     }),
   ],
 };
