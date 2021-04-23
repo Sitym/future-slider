@@ -3,7 +3,6 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import cleaner from 'rollup-plugin-cleaner';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import packageJson from './package.json';
 import babel from '@rollup/plugin-babel';
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
@@ -11,14 +10,16 @@ export default {
   input: 'future-slider/index.ts',
   output: [
     {
-      file: packageJson.main,
+      dir: './packages',
       format: 'cjs',
       sourcemap: true,
+      preserveModules: true
     },
     {
-      file: packageJson.module,
+      dir: './packages/esm',
       format: 'esm',
       sourcemap: true,
+      preserveModules: true
     },
   ],
   plugins: [
@@ -33,9 +34,6 @@ export default {
     }),
     peerDepsExternal(),
     commonjs({ extensions: ['.js', '.ts'] }),
-    typescript({
-      exclude: ['**/*.stories.tsx', '**/*.test.tsx'],
-      useTsconfigDeclarationDir: true,
-    }),
+    typescript({ tsconfig: './tsconfig.json' }),
   ],
 };
