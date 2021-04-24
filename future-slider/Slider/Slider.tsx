@@ -5,6 +5,7 @@ import React, {
   useState,
   useEffect,
   CSSProperties,
+  ReactChild,
 } from 'react';
 import css from './slider.stm.css';
 import { SliderItem, SliderItemProps } from '../SliderItem';
@@ -64,10 +65,14 @@ export const Slider: FC<SliderProps> = ({
     return Children.map(
       children,
       (
-        child: SliderItemProps | React.ReactChild | React.ReactNode,
+        child: SliderItemProps | ReactChild | ReactNode,
         index: number,
       ) => {
-        if (React.isValidElement<SliderItemProps>(child)) {
+        if (
+          React.isValidElement<
+            SliderItemProps & ReactChild & ReactNode
+          >(child)
+        ) {
           return (
             <SliderItem key={index} {...child.props}>
               {child.props.children}
