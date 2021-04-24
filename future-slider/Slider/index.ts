@@ -1,1 +1,1 @@
-export { MyButton } from './Slider';
+export { Slider } from './Slider';

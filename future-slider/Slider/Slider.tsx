@@ -1,17 +1,35 @@
-import React, { CSSProperties, FC, MouseEvent } from 'react';
-interface ButtonProps {
-  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
-  children: React.ReactNode | string;
-  style: CSSProperties;
+import React, { FC } from 'react';
+import css from './slider.stm.css';
+
+interface SliderProps {
+  children?: React.ReactElement;
+  className?: string;
+  id?: string;
+  style?: React.CSSProperties;
 }
-export const MyButton: FC<ButtonProps> = ({
-  onClick,
+/**
+ * Simple proto slider
+ * @param {React.ReactElement} children Children
+ * @param {string} className Children
+ * @param {string} id Children
+ * @param {React.CSSProperties} style Children
+ * @returns Slider
+ */
+export const Slider: FC<SliderProps> = ({
   children,
+  className,
+  id,
   style,
 }) => {
   return (
-    <button onClick={onClick} style={style}>
-      {children}
-    </button>
+    <>
+      <div
+        className={`${css.intro} ${className}`}
+        id={id}
+        style={style}
+      >
+        {children}
+      </div>
+    </>
   );
 };

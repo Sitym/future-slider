@@ -4,8 +4,10 @@ import cleaner from 'rollup-plugin-cleaner';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
+import postcss from 'rollup-plugin-postcss';
+import autoprefixer from 'autoprefixer';
 
-const extensions = ['.js', '.jsx', '.ts', '.tsx'];
+const extensions = ['.js', '.jsx', '.ts', '.tsx', '.css'];
 export default {
   input: 'future-slider/index.ts',
   output: [
@@ -13,21 +15,32 @@ export default {
       dir: './packages',
       format: 'cjs',
       sourcemap: true,
-      preserveModules: true
     },
     {
       dir: './packages/esm',
       format: 'esm',
       sourcemap: true,
-      preserveModules: true
     },
   ],
   plugins: [
     resolve({ extensions }),
+    // postcss({
+    //   plugins: [autoprefixer()],
+    //   sourceMap: true,
+    //   extract: true,
+    //   minimize: true,
+    //   extensions: ['.css'],
+    // }),
+    postcss({
+      plugins: [autoprefixer()],
+      modules: true,
+      preserveModules: true,
+    }),
     babel({
       extensions,
       babelHelpers: 'bundled',
       include: ['future-slider/**/*'],
+      exclude: ['packages/**/*', 'node_modules'],
     }),
     cleaner({
       targets: ['./packages'],

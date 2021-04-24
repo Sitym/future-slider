@@ -1,5 +1,10 @@
 import React from 'react';
-export declare var MyButton: (_ref: any) => React.DetailedReactHTMLElement<{
-    onClick: any;
-    style: any;
-}, HTMLElement>;
+/**
+ * Simple proto slider
+ * @param {React.ReactElement} children Children
+ * @param {string} className Children
+ * @param {string} id Children
+ * @param {React.CSSProperties} style Children
+ * @returns Slider
+ */
+export declare var Slider: (_ref: any) => React.FunctionComponentElement<{}>;
