@@ -69,7 +69,7 @@ export const SliderItem: React.FC<
     : {};
   return (
     <div
-      className={`${css.item} ${className}`}
+      className={`${css.item} ${className || ''}`}
       dat-index={index}
       style={style}
     >
