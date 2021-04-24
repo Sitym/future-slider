@@ -64,7 +64,7 @@ var css$1 = {
 };
 styleInject(css_248z$1);
 
-var css_248z = ".slide-stm_item__yXB6Y {\n  display: inline-block;\n  width: 100%;\n  height: 100%;\n}\n.slide-stm_inner__RhBi1 {\n  width: 100%;\n  height: 100%;\n}\n.slide-stm_flex__3NjoX {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  width: 100%;\n}\n.slide-stm_topLeft__3uPlx {\n  align-items: flex-start;\n}\n.slide-stm_topCenter__38vdi {\n  align-items: center;\n}\n.slide-stm_topRight__17Nfr {\n  align-items: flex-end;\n}\n.slide-stm_centerRight__2waYk {\n  justify-content: center;\n  align-items: flex-end;\n}\n.slide-stm_centerLeft__Hj3XW {\n  justify-content: center;\n  align-items: flex-start;\n}\n.slide-stm_center__1PpqE {\n  justify-content: center;\n  align-items: center;\n}\n.slide-stm_bottomLeft__16pX8 {\n  justify-content: flex-start;\n}\n.slide-stm_bottomRight__3vX6c {\n  justify-content: flex-end;\n}\n.slide-stm_bottomCenter__3GnxM {\n  justify-content: flex-end;\n  align-items: center;\n}\n";
+var css_248z = ".slide-stm_item__yXB6Y {\n  display: inline-block;\n  vertical-align: top;\n  width: 100%;\n  height: 100%;\n}\n.slide-stm_inner__RhBi1 {\n  width: 100%;\n  height: 100%;\n}\n.slide-stm_flex__3NjoX {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  width: 100%;\n}\n.slide-stm_topLeft__3uPlx {\n  align-items: flex-start;\n}\n.slide-stm_topCenter__38vdi {\n  align-items: center;\n}\n.slide-stm_topRight__17Nfr {\n  align-items: flex-end;\n}\n.slide-stm_centerRight__2waYk {\n  justify-content: center;\n  align-items: flex-end;\n}\n.slide-stm_centerLeft__Hj3XW {\n  justify-content: center;\n  align-items: flex-start;\n}\n.slide-stm_center__1PpqE {\n  justify-content: center;\n  align-items: center;\n}\n.slide-stm_bottomLeft__16pX8 {\n  justify-content: flex-start;\n}\n.slide-stm_bottomRight__3vX6c {\n  justify-content: flex-end;\n}\n.slide-stm_bottomCenter__3GnxM {\n  justify-content: flex-end;\n  align-items: center;\n}\n";
 var css = {
   "item": "slide-stm_item__yXB6Y",
   "inner": "slide-stm_inner__RhBi1",
@@ -129,7 +129,7 @@ var SliderItem = function SliderItem(_a) {
     backgroundSize: bgImage.size || 'cover'
   } : {};
   return /*#__PURE__*/React.createElement("div", {
-    className: css.item + " " + className,
+    className: css.item + " " + (className || ''),
     "dat-index": index,
     style: style
   }, /*#__PURE__*/React.createElement("div", {
