@@ -3,3 +3,44 @@
   width: 100%;
   height: 100%;
 }
+.inner {
+  width: 100%;
+  height: 100%;
+}
+.flex {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+.topLeft {
+  align-items: flex-start;
+}
+.topCenter {
+  align-items: center;
+}
+.topRight {
+  align-items: flex-end;
+}
+.centerRight {
+  justify-content: center;
+  align-items: flex-end;
+}
+.centerLeft {
+  justify-content: center;
+  align-items: flex-start;
+}
+.center {
+  justify-content: center;
+  align-items: center;
+}
+.bottomLeft {
+  justify-content: flex-start;
+}
+.bottomRight {
+  justify-content: flex-end;
+}
+.bottomCenter {
+  justify-content: flex-end;
+  align-items: center;
+}

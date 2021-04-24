@@ -1,4 +1,30 @@
-import React, { useState, useEffect, Children } from 'react';
+import React, { useState, Children, useEffect } from 'react';
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
@@ -38,9 +64,20 @@ var css$1 = {
 };
 styleInject(css_248z$1);
 
-var css_248z = ".slide-stm_item__yXB6Y {\n  display: inline-block;\n  width: 100%;\n  height: 100%;\n}\n";
+var css_248z = ".slide-stm_item__yXB6Y {\n  display: inline-block;\n  width: 100%;\n  height: 100%;\n}\n.slide-stm_inner__RhBi1 {\n  width: 100%;\n  height: 100%;\n}\n.slide-stm_flex__3NjoX {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  width: 100%;\n}\n.slide-stm_topLeft__3uPlx {\n  align-items: flex-start;\n}\n.slide-stm_topCenter__38vdi {\n  align-items: center;\n}\n.slide-stm_topRight__17Nfr {\n  align-items: flex-end;\n}\n.slide-stm_centerRight__2waYk {\n  justify-content: center;\n  align-items: flex-end;\n}\n.slide-stm_centerLeft__Hj3XW {\n  justify-content: center;\n  align-items: flex-start;\n}\n.slide-stm_center__1PpqE {\n  justify-content: center;\n  align-items: center;\n}\n.slide-stm_bottomLeft__16pX8 {\n  justify-content: flex-start;\n}\n.slide-stm_bottomRight__3vX6c {\n  justify-content: flex-end;\n}\n.slide-stm_bottomCenter__3GnxM {\n  justify-content: flex-end;\n  align-items: center;\n}\n";
 var css = {
-  "item": "slide-stm_item__yXB6Y"
+  "item": "slide-stm_item__yXB6Y",
+  "inner": "slide-stm_inner__RhBi1",
+  "flex": "slide-stm_flex__3NjoX",
+  "topLeft": "slide-stm_topLeft__3uPlx",
+  "topCenter": "slide-stm_topCenter__38vdi",
+  "topRight": "slide-stm_topRight__17Nfr",
+  "centerRight": "slide-stm_centerRight__2waYk",
+  "centerLeft": "slide-stm_centerLeft__Hj3XW",
+  "center": "slide-stm_center__1PpqE",
+  "bottomLeft": "slide-stm_bottomLeft__16pX8",
+  "bottomRight": "slide-stm_bottomRight__3vX6c",
+  "bottomCenter": "slide-stm_bottomCenter__3GnxM"
 };
 styleInject(css_248z);
 
@@ -48,12 +85,57 @@ var SliderItem = function SliderItem(_a) {
   var children = _a.children,
       index = _a.index,
       className = _a.className,
-      style = _a.style;
+      style = _a.style,
+      content = _a.content,
+      bgImage = _a.bgImage;
+
+  var contentPosition = function contentPosition(position) {
+    switch (position) {
+      case 'topLeft':
+        return css.topLeft;
+
+      case 'topCenter':
+        return css.topCenter;
+
+      case 'topRight':
+        return css.topRight;
+
+      case 'centerLeft':
+        return css.centerLeft;
+
+      case 'center':
+        return css.center;
+
+      case 'centerRight':
+        return css.centerRight;
+
+      case 'bottomLeft':
+        return css.bottomLeft;
+
+      case 'bottomCenter':
+        return css.bottomCenter;
+
+      case 'bottomRight':
+        return css.bottomRight;
+
+      default:
+        return undefined;
+    }
+  };
+
+  var background = bgImage ? {
+    backgroundImage: "url(" + bgImage.url + ")",
+    backgroundRepeat: bgImage.repeat || 'no-repeat',
+    backgroundSize: bgImage.size || 'cover'
+  } : {};
   return /*#__PURE__*/React.createElement("div", {
     className: css.item + " " + className,
     "dat-index": index,
     style: style
-  }, children);
+  }, /*#__PURE__*/React.createElement("div", {
+    className: css.inner + " " + (contentPosition(content) ? contentPosition(content) + " " + css.flex : ''),
+    style: background
+  }, children));
 };
 
 /**
@@ -75,6 +157,8 @@ var Slider = function Slider(_a) {
   var _c = useState(0),
       transDuration = _c[0],
       setTransitionDuration = _c[1];
+
+  var childrenCount = Children.count(children);
 
   var PrevSlide = function PrevSlide(event) {
     event.preventDefault();
@@ -108,18 +192,23 @@ var Slider = function Slider(_a) {
   }, [index]);
 
   var slides = function slides() {
-    return Children.map(children, function (slide, index) {
-      return /*#__PURE__*/React.createElement(SliderItem, {
-        key: index,
-        index: index,
-        children: slide
-      });
+    return Children.map(children, function (child, index) {
+      if ( /*#__PURE__*/React.isValidElement(child)) {
+        return /*#__PURE__*/React.createElement(SliderItem, __assign({
+          key: index
+        }, child.props), child.props.children);
+      } else {
+        return /*#__PURE__*/React.createElement(SliderItem, {
+          key: index,
+          index: index
+        }, child);
+      }
     });
   };
 
   var cloneBefore = function cloneBefore() {
     return Children.map(children, function (slide, index) {
-      if (index + 1 === (children === null || children === void 0 ? void 0 : children.length)) {
+      if (index + 1 === childrenCount) {
         return /*#__PURE__*/React.createElement(SliderItem, {
           key: index,
           index: index,

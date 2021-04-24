@@ -10,7 +10,7 @@ import css from './slider.stm.css';
 import { SliderItem, SliderItemProps } from '../SliderItem';
 
 export interface SliderProps {
-  children?: SliderItemProps[] | ReactNode[];
+  children?: SliderItemProps[] | ReactNode;
   className?: string;
   id?: string;
   style?: React.CSSProperties;
@@ -34,6 +34,7 @@ export const Slider: FC<SliderProps> = ({
   //
   const [index, setIndex] = useState<number>(1);
   const [transDuration, setTransitionDuration] = useState<number>(0);
+  const childrenCount: number = Children.count(children);
 
   const PrevSlide = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
@@ -62,8 +63,23 @@ export const Slider: FC<SliderProps> = ({
   const slides = () => {
     return Children.map(
       children,
-      (_slide: SliderItemProps | ReactNode, index: number) => {
-        return <SliderItem key={index} index={index} />;
+      (
+        child: SliderItemProps | React.ReactChild | React.ReactNode,
+        index: number,
+      ) => {
+        if (React.isValidElement<SliderItemProps>(child)) {
+          return (
+            <SliderItem key={index} {...child.props}>
+              {child.props.children}
+            </SliderItem>
+          );
+        } else {
+          return (
+            <SliderItem key={index} index={index}>
+              {child}
+            </SliderItem>
+          );
+        }
       },
     );
   };
@@ -71,7 +87,7 @@ export const Slider: FC<SliderProps> = ({
     return Children.map(
       children,
       (slide: SliderItemProps | ReactNode, index: number) => {
-        if (index + 1 === children?.length) {
+        if (index + 1 === childrenCount) {
           return (
             <SliderItem key={index} index={index} children={slide} />
           );
