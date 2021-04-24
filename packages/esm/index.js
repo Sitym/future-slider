@@ -53,7 +53,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$1 = ".slider-stm_container__213S- {\n  position: relative;\n}\n.slider-stm_wrapper__1O_lh {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.slider-stm_sliders__3DQCb {\n  width: 100%;\n  height: 100%;\n  transform: translate3d(-100%, 0, 0);\n  padding: 0;\n  margin: 0;\n  white-space: nowrap;\n}\n.slider-stm_arrow__10fpq {\n  position: absolute;\n  top: 50%;\n  border: none;\n  border-radius: 20px;\n  padding: 5px 10px;\n  cursor: pointer;\n}\n.slider-stm_left__3rpN5 {\n  left: 10px;\n}\n.slider-stm_right__1RtjJ {\n  right: 10px;\n}\n";
+var css_248z$1 = ".slider-stm_container__213S- {\n  position: relative;\n}\n.slider-stm_wrapper__1O_lh {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.slider-stm_sliders__3DQCb {\n  width: 100%;\n  height: 100%;\n  transform: translate3d(-100%, 0, 0);\n  padding: 0;\n  margin: 0;\n  white-space: nowrap;\n}\n.slider-stm_arrow__10fpq {\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  border: none;\n  border-radius: 20px;\n  padding: 5px 10px;\n  cursor: pointer;\n}\n.slider-stm_left__3rpN5 {\n  left: 10px;\n}\n.slider-stm_right__1RtjJ {\n  right: 10px;\n}\n";
 var css$1 = {
   "container": "slider-stm_container__213S-",
   "wrapper": "slider-stm_wrapper__1O_lh",
@@ -148,7 +148,8 @@ var Slider = function Slider(_a) {
       transition = _a.transition,
       arrowColor = _a.arrowColor,
       arrowSize = _a.arrowSize,
-      height = _a.height; //
+      height = _a.height,
+      autoPlay = _a.autoPlay; //
 
   var _b = useState(1),
       index = _b[0],
@@ -174,10 +175,26 @@ var Slider = function Slider(_a) {
     setIndex(function (prev) {
       return prev + 1;
     });
-  };
+  }; // Adding autoplay
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //   }, 7000);
+  //   return () => clearTimeout(timer);
+  // }, [index]);
+  // Handle transform event.
+
 
   useEffect(function () {
-    // setTransitionDuration(0);
+    if (autoPlay) {
+      var timer = typeof autoPlay === 'number' ? autoPlay : 7000;
+      setTimeout(function () {
+        setTransitionDuration(500);
+        setIndex(function (prev) {
+          return prev + 1;
+        });
+      }, timer);
+    }
+
     if (index === 0) {
       setTimeout(function () {
         setTransitionDuration(0);

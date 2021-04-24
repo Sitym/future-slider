@@ -9,6 +9,7 @@ export interface SliderProps {
     arrowColor?: string;
     arrowSize?: 1 | 2 | 3 | 4 | 5;
     height?: string;
+    autoPlay?: boolean | number;
 }
 /**
  * SiTYM sliders doesn't re-render.

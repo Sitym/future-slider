@@ -4,7 +4,6 @@ import React, {
   Children,
   useState,
   useEffect,
-  CSSProperties,
   ReactChild,
 } from 'react';
 import css from './slider.stm.css';
@@ -19,6 +18,7 @@ export interface SliderProps {
   arrowColor?: string;
   arrowSize?: 1 | 2 | 3 | 4 | 5;
   height?: string;
+  autoPlay?: boolean | number;
 }
 /**
  * SiTYM sliders doesn't re-render.
@@ -31,6 +31,7 @@ export const Slider: FC<SliderProps> = ({
   arrowColor,
   arrowSize,
   height,
+  autoPlay,
 }) => {
   //
   const [index, setIndex] = useState<number>(1);
@@ -47,8 +48,23 @@ export const Slider: FC<SliderProps> = ({
     event.preventDefault();
     setIndex((prev) => prev + 1);
   };
+  // Adding autoplay
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+
+  //   }, 7000);
+  //   return () => clearTimeout(timer);
+  // }, [index]);
+
+  // Handle transform event.
   useEffect(() => {
-    // setTransitionDuration(0);
+    if (autoPlay) {
+      const timer = typeof autoPlay === 'number' ? autoPlay : 7000;
+      setTimeout(() => {
+        setTransitionDuration(500);
+        setIndex((prev) => prev + 1);
+      }, timer);
+    }
     if (index === 0) {
       setTimeout(() => {
         setTransitionDuration(0);

@@ -18,6 +18,7 @@ export const CustomSlider = () => {
         arrowSize={5}
         height="100vh"
         arrowColor="#ccc"
+        autoPlay={6000}
       >
         <SliderItem
           index={1}
