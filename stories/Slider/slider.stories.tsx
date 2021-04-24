@@ -1,5 +1,5 @@
 import React from 'react';
-import { Slider } from './slider';
+import { CustomSlider } from './slider';
 export default {
   title: 'Sliders|Components/Slider',
   parameters: {
@@ -7,5 +7,5 @@ export default {
   },
 };
 export const SliderStory = () => {
-  return <Slider />;
+  return <CustomSlider />;
 };

@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { FC, ReactNode } from 'react';
+import { SliderItemProps } from '../SliderItem';
+export interface SliderProps {
+    children?: SliderItemProps[] | ReactNode[];
+    className?: string;
+    id?: string;
+    style?: React.CSSProperties;
+    transition?: number;
+    arrowColor?: string;
+    arrowSize?: 1 | 2 | 3 | 4 | 5;
+    height?: string;
+}
 /**
- * Simple proto slider
- * @param {React.ReactElement} children Children
- * @param {string} className Children
- * @param {string} id Children
- * @param {React.CSSProperties} style Children
- * @returns Slider
+ * SiTYM sliders doesn't re-render.
+ *
  */
-export declare var Slider: (_ref: any) => React.FunctionComponentElement<{}>;
+export declare const Slider: FC<SliderProps>;

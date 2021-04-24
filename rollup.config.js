@@ -31,6 +31,7 @@ export default {
     //   minimize: true,
     //   extensions: ['.css'],
     // }),
+    typescript({ tsconfig: './tsconfig.json' }),
     postcss({
       plugins: [autoprefixer()],
       modules: true,
@@ -47,6 +48,5 @@ export default {
     }),
     peerDepsExternal(),
     commonjs({ extensions: ['.js', '.ts'] }),
-    typescript({ tsconfig: './tsconfig.json' }),
   ],
 };

@@ -1,1 +1,2 @@
-export * from './Slider/Slider';
+export * from './Slider';
+export * from './SliderItem';
