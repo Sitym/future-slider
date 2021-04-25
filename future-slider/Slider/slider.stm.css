@@ -15,9 +15,14 @@
   margin: 0;
   white-space: nowrap;
 }
+.wrapper:not(:hover) .arrow {
+  opacity: 0;
+  transition: 0.5s;
+}
 .arrow {
   position: absolute;
   top: 50%;
+  transition: 0.5s;
   transform: translateY(-50%);
   border: none;
   border-radius: 20px;

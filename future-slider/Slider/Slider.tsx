@@ -78,12 +78,12 @@ export const Slider: FC<SliderProps> = ({
       setTimeout(() => {
         setTransitionDuration(0);
         setIndex(4);
-      }, 500);
+      }, transition || 500);
     } else if (index === 5) {
       setTimeout(() => {
         setTransitionDuration(0);
         setIndex(1);
-      }, 500);
+      }, transition || 500);
     }
   }, [index]);
   const slides = () => {

@@ -61,7 +61,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$1 = ".slider-stm_container__213S- {\n  position: relative;\n}\n.slider-stm_wrapper__1O_lh {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.slider-stm_sliders__3DQCb {\n  width: 100%;\n  height: 100%;\n  transform: translate3d(-100%, 0, 0);\n  padding: 0;\n  margin: 0;\n  white-space: nowrap;\n}\n.slider-stm_arrow__10fpq {\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  border: none;\n  border-radius: 20px;\n  padding: 5px 10px;\n  cursor: pointer;\n}\n.slider-stm_left__3rpN5 {\n  left: 10px;\n}\n.slider-stm_right__1RtjJ {\n  right: 10px;\n}\n";
+var css_248z$1 = ".slider-stm_container__213S- {\n  position: relative;\n}\n.slider-stm_wrapper__1O_lh {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.slider-stm_sliders__3DQCb {\n  width: 100%;\n  height: 100%;\n  transform: translate3d(-100%, 0, 0);\n  padding: 0;\n  margin: 0;\n  white-space: nowrap;\n}\n.slider-stm_wrapper__1O_lh:not(:hover) .slider-stm_arrow__10fpq {\n  opacity: 0;\n  transition: 0.5s;\n}\n.slider-stm_arrow__10fpq {\n  position: absolute;\n  top: 50%;\n  transition: 0.5s;\n  transform: translateY(-50%);\n  border: none;\n  border-radius: 20px;\n  padding: 5px 10px;\n  cursor: pointer;\n}\n.slider-stm_left__3rpN5 {\n  left: 10px;\n}\n.slider-stm_right__1RtjJ {\n  right: 10px;\n}\n";
 var css$1 = {
   "container": "slider-stm_container__213S-",
   "wrapper": "slider-stm_wrapper__1O_lh",
@@ -174,9 +174,9 @@ var useInterval = function useInterval(callback, delay) {
  */
 
 var Slider = function Slider(_a) {
-  var children = _a.children;
-      _a.transition;
-      var arrowColor = _a.arrowColor,
+  var children = _a.children,
+      transition = _a.transition,
+      arrowColor = _a.arrowColor,
       arrowSize = _a.arrowSize,
       height = _a.height,
       autoPlay = _a.autoPlay; //
@@ -221,12 +221,12 @@ var Slider = function Slider(_a) {
       setTimeout(function () {
         setTransitionDuration(0);
         setIndex(4);
-      }, 500);
+      }, transition || 500);
     } else if (index === 5) {
       setTimeout(function () {
         setTransitionDuration(0);
         setIndex(1);
-      }, 500);
+      }, transition || 500);
     }
   }, [index]);
 
