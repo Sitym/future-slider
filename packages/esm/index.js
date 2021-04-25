@@ -1,4 +1,4 @@
-import React, { useState, Children, useEffect } from 'react';
+import React, { useRef, useEffect, useState, Children } from 'react';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -138,15 +138,37 @@ var SliderItem = function SliderItem(_a) {
   }, children));
 };
 
+var useInterval = function useInterval(callback, delay) {
+  var savedCallback = useRef(callback); // Remember the latest callback if it changes.
+
+  useEffect(function () {
+    savedCallback.current = callback;
+  }, [callback]); // Set up the interval.
+
+  useEffect(function () {
+    // Don't schedule if no delay is specified.
+    if (delay === null) {
+      return;
+    }
+
+    var id = setInterval(function () {
+      return savedCallback.current();
+    }, delay);
+    return function () {
+      return clearInterval(id);
+    };
+  }, [delay]);
+};
+
 /**
  * SiTYM sliders doesn't re-render.
  *
  */
 
 var Slider = function Slider(_a) {
-  var children = _a.children,
-      transition = _a.transition,
-      arrowColor = _a.arrowColor,
+  var children = _a.children;
+      _a.transition;
+      var arrowColor = _a.arrowColor,
       arrowSize = _a.arrowSize,
       height = _a.height,
       autoPlay = _a.autoPlay; //
@@ -175,36 +197,28 @@ var Slider = function Slider(_a) {
     setIndex(function (prev) {
       return prev + 1;
     });
-  }; // Adding autoplay
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //   }, 7000);
-  //   return () => clearTimeout(timer);
-  // }, [index]);
-  // Handle transform event.
+  };
 
+  if (autoPlay) {
+    useInterval(function () {
+      setTransitionDuration(500);
+      setIndex(function (prev) {
+        return prev + 1;
+      });
+    }, typeof autoPlay === 'number' ? autoPlay : 7000);
+  }
 
   useEffect(function () {
-    if (autoPlay) {
-      var timer = typeof autoPlay === 'number' ? autoPlay : 7000;
-      setTimeout(function () {
-        setTransitionDuration(500);
-        setIndex(function (prev) {
-          return prev + 1;
-        });
-      }, timer);
-    }
-
     if (index === 0) {
       setTimeout(function () {
         setTransitionDuration(0);
         setIndex(4);
-      }, transition || 500);
+      }, 500);
     } else if (index === 5) {
       setTimeout(function () {
         setTransitionDuration(0);
         setIndex(1);
-      }, transition || 500);
+      }, 500);
     }
   }, [index]);
 

@@ -29,21 +29,21 @@ export const CustomSlider = () => {
         </SliderItem>
         <SliderItem
           index={2}
-          content="bottomRight"
+          content="center"
           style={styleSlide('#f00')}
         >
           Slid 2
         </SliderItem>
         <SliderItem
           index={3}
-          content="centerLeft"
+          content="center"
           style={styleSlide('#000')}
         >
           Slid 3
         </SliderItem>
         <SliderItem
           index={4}
-          content="topCenter"
+          content="center"
           style={styleSlide('#f00')}
         >
           Slid 4

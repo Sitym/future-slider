@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import css from './slider.stm.css';
 import { SliderItem, SliderItemProps } from '../SliderItem';
+import { useInterval } from './useInterval';
 
 export interface SliderProps {
   children?: SliderItemProps[] | ReactNode;
@@ -38,6 +39,21 @@ export const Slider: FC<SliderProps> = ({
   const [transDuration, setTransitionDuration] = useState<number>(0);
   const childrenCount: number = Children.count(children);
 
+  const finishedLap = () => {
+    if (index === 0) {
+      const timer = setTimeout(() => {
+        setTransitionDuration(0);
+        setIndex(4);
+      }, 500);
+      clearTimeout(timer);
+    } else if (index === 5) {
+      const timer = setTimeout(() => {
+        setTransitionDuration(0);
+        setIndex(1);
+      }, 500);
+      clearTimeout(timer);
+    }
+  };
   const PrevSlide = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     setTransitionDuration(500);
@@ -48,33 +64,26 @@ export const Slider: FC<SliderProps> = ({
     event.preventDefault();
     setIndex((prev) => prev + 1);
   };
-  // Adding autoplay
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-
-  //   }, 7000);
-  //   return () => clearTimeout(timer);
-  // }, [index]);
-
-  // Handle transform event.
-  useEffect(() => {
-    if (autoPlay) {
-      const timer = typeof autoPlay === 'number' ? autoPlay : 7000;
-      setTimeout(() => {
+  if (autoPlay) {
+    useInterval(
+      () => {
         setTransitionDuration(500);
         setIndex((prev) => prev + 1);
-      }, timer);
-    }
+      },
+      typeof autoPlay === 'number' ? autoPlay : 7000,
+    );
+  }
+  useEffect(() => {
     if (index === 0) {
       setTimeout(() => {
         setTransitionDuration(0);
         setIndex(4);
-      }, transition || 500);
+      }, 500);
     } else if (index === 5) {
       setTimeout(() => {
         setTransitionDuration(0);
         setIndex(1);
-      }, transition || 500);
+      }, 500);
     }
   }, [index]);
   const slides = () => {
