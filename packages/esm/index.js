@@ -282,7 +282,7 @@ var Slider = function Slider(_a) {
     if (index === 0) {
       setTimeout(function () {
         setTransitionDuration(0);
-        setIndex(4);
+        setIndex(childrenCount);
       }, transition || 500);
     } else if (index === childrenCount + 1) {
       setTimeout(function () {
@@ -340,31 +340,7 @@ var Slider = function Slider(_a) {
         }
       }
     });
-  }; // const cloneBefore = () => {
-  //   return Children.map(
-  //     children,
-  //     (slide: SliderItemProps | ReactNode, index: number) => {
-  //       if (index + 1 === childrenCount) {
-  //         return (
-  //           <SliderItem key={index} index={index} children={slide} />
-  //         );
-  //       }
-  //     },
-  //   );
-  // };
-  // const cloneAfter = () => {
-  //   return Children.map(
-  //     children,
-  //     (slide: SliderItemProps | ReactNode, index: number) => {
-  //       if (index === 0) {
-  //         return (
-  //           <SliderItem key={index} index={index} children={slide} />
-  //         );
-  //       }
-  //     },
-  //   );
-  // };
-  // Arrow controller
+  }; // Arrow controller
 
 
   var arrowSizes = function arrowSizes(size) {

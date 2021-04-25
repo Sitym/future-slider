@@ -13,7 +13,7 @@ import { Dot } from './dot';
 import { useTimeout } from './useTimeout';
 
 export interface SliderProps {
-  children?: SliderItemProps[] | ReactNode;
+  children: SliderItemProps[] | ReactNode;
   className?: string;
   id?: string;
   style?: React.CSSProperties;
@@ -84,7 +84,7 @@ export const Slider: FC<SliderProps> = ({
     if (index === 0) {
       setTimeout(() => {
         setTransitionDuration(0);
-        setIndex(4);
+        setIndex(childrenCount);
       }, transition || 500);
     } else if (index === childrenCount + 1) {
       setTimeout(() => {
@@ -161,31 +161,6 @@ export const Slider: FC<SliderProps> = ({
       },
     );
   };
-  // const cloneBefore = () => {
-  //   return Children.map(
-  //     children,
-  //     (slide: SliderItemProps | ReactNode, index: number) => {
-  //       if (index + 1 === childrenCount) {
-  //         return (
-  //           <SliderItem key={index} index={index} children={slide} />
-  //         );
-  //       }
-  //     },
-  //   );
-  // };
-  // const cloneAfter = () => {
-  //   return Children.map(
-  //     children,
-  //     (slide: SliderItemProps | ReactNode, index: number) => {
-  //       if (index === 0) {
-  //         return (
-  //           <SliderItem key={index} index={index} children={slide} />
-  //         );
-  //       }
-  //     },
-  //   );
-  // };
-
   // Arrow controller
 
   const arrowSizes = (size?: 1 | 2 | 3 | 4 | 5 | 6) => {

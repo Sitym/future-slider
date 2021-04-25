@@ -19,6 +19,10 @@
   opacity: 0;
   transition: 0.5s;
 }
+.wrapper:not(:hover) .dot_container {
+  opacity: 0;
+  transition: 0.5s;
+}
 .arrow {
   position: absolute;
   top: 50%;
@@ -39,6 +43,7 @@
   position: absolute;
   height: 50px;
   bottom: 0;
+  transition: 0.5s;
   left: 50%;
   transform: translateX(-50%);
   display: inline-flex;
