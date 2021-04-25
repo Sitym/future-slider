@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import css from './slide.stm.css';
 export interface SliderItemProps {
-  children?: React.ReactNode | React.ReactChild | any;
+  children?: React.ReactNode;
   className?: string;
   index?: number;
   style?: React.CSSProperties;
@@ -33,9 +33,14 @@ export interface SliderItemProps {
       | 'repeat';
   };
 }
-export const SliderItem: React.FC<
-  SliderItemProps & React.ReactChild & React.ReactNode & any
-> = ({ children, index, className, style, content, bgImage }) => {
+export const SliderItem: React.FC<SliderItemProps> = ({
+  children,
+  index,
+  className,
+  style,
+  content,
+  bgImage,
+}) => {
   const contentPosition = (position) => {
     switch (position) {
       case 'topLeft':

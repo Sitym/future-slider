@@ -1,6 +1,6 @@
 import React from 'react';
 export interface SliderItemProps {
-    children?: React.ReactNode | React.ReactChild | any;
+    children?: React.ReactNode;
     className?: string;
     index?: number;
     style?: React.CSSProperties;
@@ -11,4 +11,4 @@ export interface SliderItemProps {
         repeat?: 'no-repeat' | 'repeat-x' | 'repeat-y' | 'round' | 'space' | 'repeat';
     };
 }
-export declare const SliderItem: React.FC<SliderItemProps & React.ReactChild & React.ReactNode & any>;
+export declare const SliderItem: React.FC<SliderItemProps>;

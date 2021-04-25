@@ -8,6 +8,7 @@
   "files": [
     "packages"
   ],
+  "private": false,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
@@ -15,7 +16,8 @@
     "test-jest": "jest",
     "test-jest:watch": "jest --watch",
     "build": "rollup -c",
-    "build:w": "rollup -cw"
+    "build:w": "rollup -cw",
+    "npm-publish": "npm version patch && npm publish && git push --tags"
   },
   "keywords": [
     "React",
@@ -41,6 +43,7 @@
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^18.0.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
+    "@sitym/future-slider": "^1.0.0",
     "@storybook/addon-actions": "^6.2.8",
     "@storybook/addon-essentials": "^6.2.8",
     "@storybook/addon-links": "^6.2.8",
@@ -75,7 +78,7 @@
     "typescript": "^4.2.4"
   },
   "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
   }
 }

@@ -61,7 +61,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$1 = ".slider-stm_container__213S- {\n  position: relative;\n}\n.slider-stm_wrapper__1O_lh {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.slider-stm_sliders__3DQCb {\n  width: 100%;\n  height: 100%;\n  transform: translate3d(-100%, 0, 0);\n  padding: 0;\n  margin: 0;\n  white-space: nowrap;\n}\n.slider-stm_wrapper__1O_lh:not(:hover) .slider-stm_arrow__10fpq {\n  opacity: 0;\n  transition: 0.5s;\n}\n.slider-stm_arrow__10fpq {\n  position: absolute;\n  top: 50%;\n  transition: 0.5s;\n  transform: translateY(-50%);\n  border: none;\n  border-radius: 20px;\n  padding: 5px 10px;\n  cursor: pointer;\n}\n.slider-stm_left__3rpN5 {\n  left: 10px;\n}\n.slider-stm_right__1RtjJ {\n  right: 10px;\n}\n.slider-stm_dot_container__uDcra {\n  position: absolute;\n  height: 50px;\n  bottom: 0;\n  left: 50%;\n  transform: translateX(-50%);\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n}\n.slider-stm_dot__3ZiQY {\n  width: 20px;\n  height: 20px;\n  margin-right: 10px;\n}\n";
+var css_248z$1 = ".slider-stm_container__213S- {\n  position: relative;\n}\n.slider-stm_wrapper__1O_lh {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.slider-stm_sliders__3DQCb {\n  width: 100%;\n  height: 100%;\n  transform: translate3d(-100%, 0, 0);\n  padding: 0;\n  margin: 0;\n  white-space: nowrap;\n}\n.slider-stm_wrapper__1O_lh:not(:hover) .slider-stm_arrow__10fpq {\n  opacity: 0;\n  transition: 0.5s;\n}\n.slider-stm_arrow__10fpq {\n  position: absolute;\n  top: 50%;\n  transition: 0.5s;\n  transform: translateY(-50%);\n  border: none;\n  border-radius: 20px;\n  padding: 5px 10px;\n  cursor: pointer;\n}\n.slider-stm_left__3rpN5 {\n  left: 10px;\n}\n.slider-stm_right__1RtjJ {\n  right: 10px;\n}\n.slider-stm_dot_container__uDcra {\n  position: absolute;\n  height: 50px;\n  bottom: 0;\n  left: 50%;\n  transform: translateX(-50%);\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n}\n.slider-stm_dot__3ZiQY {\n  width: 20px;\n  height: 20px;\n  margin-right: 10px;\n  cursor: pointer;\n}\n";
 var css$1 = {
   "container": "slider-stm_container__213S-",
   "wrapper": "slider-stm_wrapper__1O_lh",
@@ -197,6 +197,28 @@ var Dot = function Dot(_a) {
   }))))));
 };
 
+var useTimeout = function useTimeout(callback, delay) {
+  var savedCallback = React.useRef(callback); // Remember the latest callback if it changes.
+
+  React.useEffect(function () {
+    savedCallback.current = callback;
+  }, [callback]); // Set up the timeout.
+
+  React.useEffect(function () {
+    // Don't schedule if no delay is specified.
+    if (delay === null) {
+      return;
+    }
+
+    var id = setTimeout(function () {
+      return savedCallback.current();
+    }, delay);
+    return function () {
+      return clearTimeout(id);
+    };
+  }, [delay]);
+};
+
 /**
  * SiTYM sliders doesn't re-render.
  *
@@ -217,14 +239,19 @@ var Slider = function Slider(_a) {
       index = _b[0],
       setIndex = _b[1];
 
-  var _c = React.useState(0),
-      transDuration = _c[0],
-      setTransitionDuration = _c[1];
+  var _c = React.useState(autoPlay || false),
+      autoRun = _c[0],
+      setAutoRun = _c[1];
+
+  var _d = React.useState(0),
+      transDuration = _d[0],
+      setTransitionDuration = _d[1];
 
   var childrenCount = React.Children.count(children);
 
   var PrevSlide = function PrevSlide(event) {
     event.preventDefault();
+    setAutoRun(false);
     setTransitionDuration(500);
     setIndex(function (prev) {
       return prev - 1;
@@ -234,6 +261,7 @@ var Slider = function Slider(_a) {
   var NextSlide = function NextSlide(event) {
     setTransitionDuration(500);
     event.preventDefault();
+    setAutoRun(false);
     setIndex(function (prev) {
       return prev + 1;
     });
@@ -243,12 +271,18 @@ var Slider = function Slider(_a) {
     setIndex(index);
   };
 
-  if (autoPlay) {
+  if (autoRun) {
     useInterval(function () {
       setTransitionDuration(500);
       setIndex(function (prev) {
         return prev + 1;
       });
+    }, typeof autoPlay === 'number' ? autoPlay : 7000);
+  }
+
+  if (autoPlay && !autoRun) {
+    useTimeout(function () {
+      setAutoRun(true);
     }, typeof autoPlay === 'number' ? autoPlay : 7000);
   }
 
@@ -274,6 +308,10 @@ var Slider = function Slider(_a) {
         active.style.fill = dotActive || '#fff';
       }
     }
+
+    return function () {
+      return undefined;
+    };
   }, [index]); // render slides items
 
   var slideItems = function slideItems() {
@@ -282,11 +320,6 @@ var Slider = function Slider(_a) {
         return /*#__PURE__*/React__default['default'].createElement(SliderItem, __assign({
           key: index
         }, child.props), child.props.children);
-      } else {
-        return /*#__PURE__*/React__default['default'].createElement(SliderItem, {
-          key: index,
-          index: index
-        }, child);
       }
     });
   }; // render slides items cloned before
@@ -299,11 +332,6 @@ var Slider = function Slider(_a) {
           return /*#__PURE__*/React__default['default'].createElement(SliderItem, __assign({
             key: index
           }, child.props), child.props.children);
-        } else {
-          return /*#__PURE__*/React__default['default'].createElement(SliderItem, {
-            key: index,
-            index: index
-          }, child);
         }
       }
     });
@@ -317,11 +345,6 @@ var Slider = function Slider(_a) {
           return /*#__PURE__*/React__default['default'].createElement(SliderItem, __assign({
             key: index
           }, child.props), child.props.children);
-        } else {
-          return /*#__PURE__*/React__default['default'].createElement(SliderItem, {
-            key: index,
-            index: index
-          }, child);
         }
       }
     });
@@ -423,7 +446,7 @@ var Slider = function Slider(_a) {
         key: index,
         index: child.props.index || index + 1,
         color: dotColor,
-        className: css$1.dot + " dot-controller",
+        className: css$1.dot,
         onClick: onDotClick
       });
     } else {
@@ -431,7 +454,7 @@ var Slider = function Slider(_a) {
         key: index,
         index: index + 1,
         color: dotColor,
-        className: css$1.dot + " dot-controller",
+        className: css$1.dot,
         onClick: onDotClick
       });
     }

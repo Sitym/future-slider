@@ -1,5 +1,16 @@
-src
+__mocks__
+.storybook
+future-slider
 node_modules
+stories
 test
+.git
+.babelrc
 .eslintrc.yml
+.gitignore
 .prettierrc
+jest-config.js
+jest-setup.js
+rollup.config.js
+tsconfig.json
+yarn.lock

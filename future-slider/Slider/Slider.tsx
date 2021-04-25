@@ -10,6 +10,7 @@ import css from './slider.stm.css';
 import { SliderItem, SliderItemProps } from '../SliderItem';
 import { useInterval } from './useInterval';
 import { Dot } from './dot';
+import { useTimeout } from './useTimeout';
 
 export interface SliderProps {
   children?: SliderItemProps[] | ReactNode;
@@ -43,27 +44,38 @@ export const Slider: FC<SliderProps> = ({
 }) => {
   //
   const [index, setIndex] = useState<number>(1);
+  const [autoRun, setAutoRun] = useState(autoPlay || false);
   const [transDuration, setTransitionDuration] = useState<number>(0);
   const childrenCount: number = Children.count(children);
 
   const PrevSlide = (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
+    setAutoRun(false);
     setTransitionDuration(500);
     setIndex((prev) => prev - 1);
   };
   const NextSlide = (event: React.MouseEvent<HTMLElement>) => {
     setTransitionDuration(500);
     event.preventDefault();
+    setAutoRun(false);
     setIndex((prev) => prev + 1);
   };
   const onDotClick = (index: number) => {
     setIndex(index);
   };
-  if (autoPlay) {
+  if (autoRun) {
     useInterval(
       () => {
         setTransitionDuration(500);
         setIndex((prev) => prev + 1);
+      },
+      typeof autoPlay === 'number' ? autoPlay : 7000,
+    );
+  }
+  if (autoPlay && !autoRun) {
+    useTimeout(
+      () => {
+        setAutoRun(true);
       },
       typeof autoPlay === 'number' ? autoPlay : 7000,
     );
@@ -91,29 +103,20 @@ export const Slider: FC<SliderProps> = ({
         active.style.fill = dotActive || '#fff';
       }
     }
+
+    return () => undefined;
   }, [index]);
   // render slides items
   const slideItems = () => {
     return Children.map(
       children,
-      (
-        child: SliderItemProps | ReactChild | ReactNode,
-        index: number,
-      ) => {
+      (child: SliderItemProps | ReactNode, index: number) => {
         if (
-          React.isValidElement<
-            SliderItemProps & ReactChild & ReactNode
-          >(child)
+          React.isValidElement<SliderItemProps & ReactNode>(child)
         ) {
           return (
             <SliderItem key={index} {...child.props}>
               {child.props.children}
-            </SliderItem>
-          );
-        } else {
-          return (
-            <SliderItem key={index} index={index}>
-              {child}
             </SliderItem>
           );
         }
@@ -124,25 +127,14 @@ export const Slider: FC<SliderProps> = ({
   const slideItemsclonedBefore = () => {
     return Children.map(
       children,
-      (
-        child: SliderItemProps | ReactChild | ReactNode,
-        index: number,
-      ) => {
+      (child: SliderItemProps | ReactNode, index: number) => {
         if (index + 1 === childrenCount) {
           if (
-            React.isValidElement<
-              SliderItemProps & ReactChild & ReactNode
-            >(child)
+            React.isValidElement<SliderItemProps & ReactNode>(child)
           ) {
             return (
               <SliderItem key={index} {...child.props}>
                 {child.props.children}
-              </SliderItem>
-            );
-          } else {
-            return (
-              <SliderItem key={index} index={index}>
-                {child}
               </SliderItem>
             );
           }
@@ -154,25 +146,14 @@ export const Slider: FC<SliderProps> = ({
   const slideItemsclonedAfter = () => {
     return Children.map(
       children,
-      (
-        child: SliderItemProps | ReactChild | ReactNode,
-        index: number,
-      ) => {
+      (child: SliderItemProps | ReactNode, index: number) => {
         if (index === 0) {
           if (
-            React.isValidElement<
-              SliderItemProps & ReactChild & ReactNode
-            >(child)
+            React.isValidElement<SliderItemProps & ReactNode>(child)
           ) {
             return (
               <SliderItem key={index} {...child.props}>
                 {child.props.children}
-              </SliderItem>
-            );
-          } else {
-            return (
-              <SliderItem key={index} index={index}>
-                {child}
               </SliderItem>
             );
           }
