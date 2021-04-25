@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useInterval } from '../Common/useInterval';
 import css from './typing.stm.css';
 export interface TypingProps {
@@ -14,41 +14,41 @@ export const Typing: FC<TypingProps> = ({
   children,
   ...props
 }) => {
-  const tagName = tag || 'p';
-  const wordLength = children.length;
-  const [word, setWord] = useState<string>('');
-  const [count, setCount] = useState<number | undefined>(0);
-
   if (typeof children !== 'string') {
     throw TypeError(
       `Typing accept only string as child : Recieved type ${typeof children}`,
     );
   }
-  useInterval(() => {
-    setCount(0);
-    setWord('');
-  }, 7000);
+  const tagName = tag || 'p';
+  const wordLength = children.length;
+  const [word, setWord] = useState<string>('');
+  const [count, setCount] = useState<number>(0);
+  const [finished, setFinished] = useState(false);
 
-  useEffect(() => {
+  useInterval(() => {
+    const arr = children.split('');
+    setWord((prev) =>
+      prev.length < wordLength ? prev + arr[count] : children,
+    );
+  }, 100);
+  useInterval(() => {
+    if (count < wordLength) {
+      setCount((prev) => prev + 1);
+    }
+  }, 100);
+
+  if (count === wordLength) {
     const timer = setTimeout(() => {
-      const arr = children.split('');
-      setCount((prev) =>
-        prev && prev < wordLength ? prev + 1 : undefined,
-      );
-      setWord((prev) =>
-        count && prev.length < wordLength
-          ? prev + arr[count]
-          : children,
-      );
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [word]);
+      setCount(0);
+      setWord('');
+    }, 1000);
+  }
   const child = (
     <>
       <span>{word}</span>
       <span
         className={`${css.typed} ${
-          count === wordLength || !count ? `${css.typed}` : ''
+          count === wordLength || !count ? `${css.blink}` : ''
         }`}
       >
         |

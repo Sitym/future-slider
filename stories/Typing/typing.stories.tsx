@@ -1,5 +1,6 @@
 import React from 'react';
-import { CustomTypings } from '.';
+import { Typing } from '../../packages/esm';
+import { Typing as Local } from './index';
 export default {
   title: 'TYPING|Typing/Typing',
   parameters: {
@@ -7,5 +8,10 @@ export default {
   },
 };
 export const TypingStory = () => {
-  return <CustomTypings />;
+  return (
+    <div>
+      <Typing tag="h1">Test typing in packages</Typing>
+      <Local tag="h1">Test typing in packages local remastered</Local>
+    </div>
+  );
 };

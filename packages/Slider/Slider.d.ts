@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import { SliderItemProps } from '../SliderItem';
 export interface SliderProps {
-    children?: SliderItemProps[] | ReactNode;
+    children: SliderItemProps[] | ReactNode;
     className?: string;
     id?: string;
     style?: React.CSSProperties;

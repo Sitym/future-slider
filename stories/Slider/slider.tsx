@@ -1,5 +1,5 @@
 import React from 'react';
-import { Slider, SliderItem } from '../../packages/';
+import { Slider, SliderItem, Typing } from '../../packages/esm';
 
 export const CustomSlider = () => {
   const styleSlide = (bg: string) => {
@@ -25,7 +25,7 @@ export const CustomSlider = () => {
           content="center"
           style={styleSlide('#000')}
         >
-          Slid 1
+          <Typing>Lorem ipsum dolor sit</Typing>
         </SliderItem>
         <SliderItem
           index={2}
