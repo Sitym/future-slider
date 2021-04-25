@@ -1,0 +1,24 @@
+.typed {
+  opacity: 1;
+}
+.blink {
+  animation: typedCursor 0.7s infinite;
+  -webkit-animation: typedCursor 0.7s infinite;
+  animation: typedCursor 0.7s infinite;
+}
+@keyframes typedCursor {
+  50% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes typedCursor {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

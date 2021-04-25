@@ -8,9 +8,9 @@ import React, {
 } from 'react';
 import css from './slider.stm.css';
 import { SliderItem, SliderItemProps } from '../SliderItem';
-import { useInterval } from './useInterval';
+import { useInterval } from '../Common/useInterval';
 import { Dot } from './dot';
-import { useTimeout } from './useTimeout';
+import { useTimeout } from '../Common/useTimeout';
 
 export interface SliderProps {
   children: SliderItemProps[] | ReactNode;
