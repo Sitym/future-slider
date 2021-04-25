@@ -1,6 +1,6 @@
 {
   "name": "@sitym/future-slider",
-  "version": "1.0.0",
+  "version": "1.0.1-0",
   "description": "Lightweight react slider ",
   "main": "packages/index.js",
   "types": "packages/index.d.ts",
