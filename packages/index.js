@@ -61,14 +61,16 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$1 = ".slider-stm_container__213S- {\n  position: relative;\n}\n.slider-stm_wrapper__1O_lh {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.slider-stm_sliders__3DQCb {\n  width: 100%;\n  height: 100%;\n  transform: translate3d(-100%, 0, 0);\n  padding: 0;\n  margin: 0;\n  white-space: nowrap;\n}\n.slider-stm_wrapper__1O_lh:not(:hover) .slider-stm_arrow__10fpq {\n  opacity: 0;\n  transition: 0.5s;\n}\n.slider-stm_arrow__10fpq {\n  position: absolute;\n  top: 50%;\n  transition: 0.5s;\n  transform: translateY(-50%);\n  border: none;\n  border-radius: 20px;\n  padding: 5px 10px;\n  cursor: pointer;\n}\n.slider-stm_left__3rpN5 {\n  left: 10px;\n}\n.slider-stm_right__1RtjJ {\n  right: 10px;\n}\n";
+var css_248z$1 = ".slider-stm_container__213S- {\n  position: relative;\n}\n.slider-stm_wrapper__1O_lh {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.slider-stm_sliders__3DQCb {\n  width: 100%;\n  height: 100%;\n  transform: translate3d(-100%, 0, 0);\n  padding: 0;\n  margin: 0;\n  white-space: nowrap;\n}\n.slider-stm_wrapper__1O_lh:not(:hover) .slider-stm_arrow__10fpq {\n  opacity: 0;\n  transition: 0.5s;\n}\n.slider-stm_arrow__10fpq {\n  position: absolute;\n  top: 50%;\n  transition: 0.5s;\n  transform: translateY(-50%);\n  border: none;\n  border-radius: 20px;\n  padding: 5px 10px;\n  cursor: pointer;\n}\n.slider-stm_left__3rpN5 {\n  left: 10px;\n}\n.slider-stm_right__1RtjJ {\n  right: 10px;\n}\n.slider-stm_dot_container__uDcra {\n  position: absolute;\n  height: 50px;\n  bottom: 0;\n  left: 50%;\n  transform: translateX(-50%);\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n}\n.slider-stm_dot__3ZiQY {\n  width: 20px;\n  height: 20px;\n  margin-right: 10px;\n}\n";
 var css$1 = {
   "container": "slider-stm_container__213S-",
   "wrapper": "slider-stm_wrapper__1O_lh",
   "sliders": "slider-stm_sliders__3DQCb",
   "arrow": "slider-stm_arrow__10fpq",
   "left": "slider-stm_left__3rpN5",
-  "right": "slider-stm_right__1RtjJ"
+  "right": "slider-stm_right__1RtjJ",
+  "dot_container": "slider-stm_dot_container__uDcra",
+  "dot": "slider-stm_dot__3ZiQY"
 };
 styleInject(css_248z$1);
 
@@ -168,6 +170,33 @@ var useInterval = function useInterval(callback, delay) {
   }, [delay]);
 };
 
+var Dot = function Dot(_a) {
+  var color = _a.color,
+      onClick = _a.onClick,
+      index = _a.index,
+      className = _a.className;
+
+  var handleClick = function handleClick(event) {
+    event.preventDefault();
+    onClick ? onClick(index) : undefined;
+  };
+
+  return /*#__PURE__*/React__default['default'].createElement("div", {
+    onClick: handleClick,
+    "data-target-dot": index,
+    className: className || ''
+  }, /*#__PURE__*/React__default['default'].createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    version: "1.1",
+    viewBox: "0 0 426.667 426.667",
+    fill: color || '#d2d2d2'
+  }, /*#__PURE__*/React__default['default'].createElement("g", null, /*#__PURE__*/React__default['default'].createElement("g", null, /*#__PURE__*/React__default['default'].createElement("g", null, /*#__PURE__*/React__default['default'].createElement("path", {
+    d: "M213.333,106.667c-58.88,0-106.667,47.787-106.667,106.667S154.453,320,213.333,320S320,272.213,320,213.333     S272.213,106.667,213.333,106.667z"
+  }), /*#__PURE__*/React__default['default'].createElement("path", {
+    d: "M213.333,0C95.467,0,0,95.467,0,213.333s95.467,213.333,213.333,213.333S426.667,331.2,426.667,213.333     S331.2,0,213.333,0z M213.333,384c-94.293,0-170.667-76.373-170.667-170.667S119.04,42.667,213.333,42.667     S384,119.04,384,213.333S307.627,384,213.333,384z"
+  }))))));
+};
+
 /**
  * SiTYM sliders doesn't re-render.
  *
@@ -179,7 +208,10 @@ var Slider = function Slider(_a) {
       arrowColor = _a.arrowColor,
       arrowSize = _a.arrowSize,
       height = _a.height,
-      autoPlay = _a.autoPlay; //
+      autoPlay = _a.autoPlay,
+      dotColor = _a.dotColor,
+      dot = _a.dot,
+      dotActive = _a.dotActive; //
 
   var _b = React.useState(1),
       index = _b[0],
@@ -207,6 +239,10 @@ var Slider = function Slider(_a) {
     });
   };
 
+  var onDotClick = function onDotClick(index) {
+    setIndex(index);
+  };
+
   if (autoPlay) {
     useInterval(function () {
       setTransitionDuration(500);
@@ -222,15 +258,25 @@ var Slider = function Slider(_a) {
         setTransitionDuration(0);
         setIndex(4);
       }, transition || 500);
-    } else if (index === 5) {
+    } else if (index === childrenCount + 1) {
       setTimeout(function () {
         setTransitionDuration(0);
         setIndex(1);
       }, transition || 500);
     }
-  }, [index]);
 
-  var slides = function slides() {
+    for (var i = 0; i < childrenCount; i++) {
+      var active = document.querySelector("div[data-target-dot=\"" + (i + 1) + "\"] svg");
+
+      if (active && i + 1 !== index) {
+        active.style.fill = dotColor || '#d2d2d2';
+      } else if (active && i + 1 === index) {
+        active.style.fill = dotActive || '#fff';
+      }
+    }
+  }, [index]); // render slides items
+
+  var slideItems = function slideItems() {
     return React.Children.map(children, function (child, index) {
       if ( /*#__PURE__*/React__default['default'].isValidElement(child)) {
         return /*#__PURE__*/React__default['default'].createElement(SliderItem, __assign({
@@ -243,31 +289,67 @@ var Slider = function Slider(_a) {
         }, child);
       }
     });
-  };
+  }; // render slides items cloned before
 
-  var cloneBefore = function cloneBefore() {
-    return React.Children.map(children, function (slide, index) {
+
+  var slideItemsclonedBefore = function slideItemsclonedBefore() {
+    return React.Children.map(children, function (child, index) {
       if (index + 1 === childrenCount) {
-        return /*#__PURE__*/React__default['default'].createElement(SliderItem, {
-          key: index,
-          index: index,
-          children: slide
-        });
+        if ( /*#__PURE__*/React__default['default'].isValidElement(child)) {
+          return /*#__PURE__*/React__default['default'].createElement(SliderItem, __assign({
+            key: index
+          }, child.props), child.props.children);
+        } else {
+          return /*#__PURE__*/React__default['default'].createElement(SliderItem, {
+            key: index,
+            index: index
+          }, child);
+        }
       }
     });
-  };
+  }; // render slides items cloned after
 
-  var cloneAfter = function cloneAfter() {
-    return React.Children.map(children, function (slide, index) {
+
+  var slideItemsclonedAfter = function slideItemsclonedAfter() {
+    return React.Children.map(children, function (child, index) {
       if (index === 0) {
-        return /*#__PURE__*/React__default['default'].createElement(SliderItem, {
-          key: index,
-          index: index,
-          children: slide
-        });
+        if ( /*#__PURE__*/React__default['default'].isValidElement(child)) {
+          return /*#__PURE__*/React__default['default'].createElement(SliderItem, __assign({
+            key: index
+          }, child.props), child.props.children);
+        } else {
+          return /*#__PURE__*/React__default['default'].createElement(SliderItem, {
+            key: index,
+            index: index
+          }, child);
+        }
       }
     });
-  }; // Arrow controller
+  }; // const cloneBefore = () => {
+  //   return Children.map(
+  //     children,
+  //     (slide: SliderItemProps | ReactNode, index: number) => {
+  //       if (index + 1 === childrenCount) {
+  //         return (
+  //           <SliderItem key={index} index={index} children={slide} />
+  //         );
+  //       }
+  //     },
+  //   );
+  // };
+  // const cloneAfter = () => {
+  //   return Children.map(
+  //     children,
+  //     (slide: SliderItemProps | ReactNode, index: number) => {
+  //       if (index === 0) {
+  //         return (
+  //           <SliderItem key={index} index={index} children={slide} />
+  //         );
+  //       }
+  //     },
+  //   );
+  // };
+  // Arrow controller
 
 
   var arrowSizes = function arrowSizes(size) {
@@ -308,7 +390,7 @@ var Slider = function Slider(_a) {
       transform: "translate3d(" + -index * 100 + "%,0,0)",
       transitionDuration: transDuration + "ms"
     }
-  }, cloneBefore(), slides(), cloneAfter()), /*#__PURE__*/React__default['default'].createElement("div", {
+  }, slideItemsclonedBefore(), slideItems(), slideItemsclonedAfter()), /*#__PURE__*/React__default['default'].createElement("div", {
     onClick: PrevSlide,
     className: css$1.arrow + " " + css$1.left
   }, /*#__PURE__*/React__default['default'].createElement("svg", {
@@ -330,7 +412,30 @@ var Slider = function Slider(_a) {
     fill: arrowColor || '#fff'
   }, /*#__PURE__*/React__default['default'].createElement("path", {
     d: "M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.568 18.005l-1.414-1.415 4.574-4.59-4.574-4.579 1.414-1.416 5.988 5.995-5.988 6.005z"
-  }))))));
+  }))), /*#__PURE__*/React__default['default'].createElement("div", {
+    className: css$1.dot_container,
+    style: dot === false ? {
+      display: 'none'
+    } : {}
+  }, React.Children.map(children, function (child, index) {
+    if ( /*#__PURE__*/React__default['default'].isValidElement(child)) {
+      return /*#__PURE__*/React__default['default'].createElement(Dot, {
+        key: index,
+        index: child.props.index || index + 1,
+        color: dotColor,
+        className: css$1.dot + " dot-controller",
+        onClick: onDotClick
+      });
+    } else {
+      return /*#__PURE__*/React__default['default'].createElement(Dot, {
+        key: index,
+        index: index + 1,
+        color: dotColor,
+        className: css$1.dot + " dot-controller",
+        onClick: onDotClick
+      });
+    }
+  })))));
 };
 
 exports.Slider = Slider;

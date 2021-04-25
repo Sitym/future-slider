@@ -8,8 +8,11 @@ export interface SliderProps {
     transition?: number;
     arrowColor?: string;
     arrowSize?: 1 | 2 | 3 | 4 | 5;
+    dotColor?: string;
+    dotActive?: string;
     height?: string;
     autoPlay?: boolean | number;
+    dot?: boolean;
 }
 /**
  * SiTYM sliders doesn't re-render.
