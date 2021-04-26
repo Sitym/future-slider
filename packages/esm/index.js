@@ -291,17 +291,15 @@ var Slider = function Slider(_a) {
   }
 
   useEffect(function () {
-    if (index === 0) {
-      setTimeout(function () {
+    var timer = setTimeout(function () {
+      if (index === 0) {
         setTransitionDuration(0);
         setIndex(childrenCount);
-      }, transition || 500);
-    } else if (index === childrenCount + 1) {
-      setTimeout(function () {
+      } else if (index === childrenCount + 1) {
         setTransitionDuration(0);
         setIndex(1);
-      }, transition || 500);
-    }
+      }
+    }, transition || 500);
 
     for (var i = 0; i < childrenCount; i++) {
       var active = document.querySelector("div[data-target-dot=\"" + (i + 1) + "\"] svg");
@@ -314,7 +312,7 @@ var Slider = function Slider(_a) {
     }
 
     return function () {
-      return undefined;
+      return clearTimeout(timer);
     };
   }, [index]); // render slides items
 

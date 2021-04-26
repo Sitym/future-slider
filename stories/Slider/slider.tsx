@@ -25,14 +25,14 @@ export const CustomSlider = () => {
           content="center"
           style={styleSlide('#000')}
         >
-          <Typing>Lorem ipsum dolor sit</Typing>
+          <Typing tag="h1">Lorem ipsum dolor sit</Typing>
         </SliderItem>
         <SliderItem
           index={2}
           content="center"
           style={styleSlide('#f00')}
         >
-          Slid 2
+          <Typing tag="h1">Lorem ipsum dolor sit</Typing>
         </SliderItem>
       </Slider>
     </div>

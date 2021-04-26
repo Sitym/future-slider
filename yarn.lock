@@ -1605,10 +1605,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sitym/future-slider@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@sitym/future-slider/-/future-slider-1.0.0.tgz#4887b31e10e0b42122ec6ff372ec73a48f3b7531"
-  integrity sha512-qcB2O0L5e6LOBBIkBSvhxbV8Ou0CZORvWVNYxj8wW89lzL9Chy0IqRcYD2K9Wm+Tq9OAaseT3MmEd6n5nufA4A==
+"@sitym/future-slider@^1.0.1-0":
+  version "1.0.1-0"
+  resolved "https://registry.yarnpkg.com/@sitym/future-slider/-/future-slider-1.0.1-0.tgz#66c8056a8d232e30289e6a026e649865d56594f7"
+  integrity sha512-5PKZIM53TgEUQwyrR16eUS8CP9upWq4czmKtPuWEq4bU4VUiK5WaxdZe8J4U0zymMUKmXKWFx3dsbv5rHhszbA==
 
 "@storybook/addon-actions@6.2.8", "@storybook/addon-actions@^6.2.8":
   version "6.2.8"

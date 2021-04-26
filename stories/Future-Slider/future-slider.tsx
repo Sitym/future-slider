@@ -1,6 +1,7 @@
-import { Slider, SliderItem } from '@sitym/future-slider';
+import { Slider, SliderItem, Typing } from '@sitym/future-slider';
 
 export const CustomSliderNpm = () => {
+  // const  = Future;
   return (
     <div>
       <div>
@@ -15,6 +16,11 @@ export const CustomSliderNpm = () => {
         >
           <SliderItem style={{ background: '#f00' }} content="center">
             Slide item via npm 1
+          </SliderItem>
+          <SliderItem style={{ background: '#f00' }} content="center">
+            <Typing tag="h1" style={{ color: '#fff' }}>
+              Typungs via npm
+            </Typing>
           </SliderItem>
         </Slider>
       </div>

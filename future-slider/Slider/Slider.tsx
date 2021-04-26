@@ -81,17 +81,15 @@ export const Slider: FC<SliderProps> = ({
     );
   }
   useEffect(() => {
-    if (index === 0) {
-      setTimeout(() => {
+    const timer = setTimeout(() => {
+      if (index === 0) {
         setTransitionDuration(0);
         setIndex(childrenCount);
-      }, transition || 500);
-    } else if (index === childrenCount + 1) {
-      setTimeout(() => {
+      } else if (index === childrenCount + 1) {
         setTransitionDuration(0);
         setIndex(1);
-      }, transition || 500);
-    }
+      }
+    }, transition || 500);
 
     for (let i = 0; i < childrenCount; i++) {
       const active = document.querySelector<HTMLElement>(
@@ -103,8 +101,7 @@ export const Slider: FC<SliderProps> = ({
         active.style.fill = dotActive || '#fff';
       }
     }
-
-    return () => undefined;
+    return () => clearTimeout(timer);
   }, [index]);
   // render slides items
   const slideItems = () => {
