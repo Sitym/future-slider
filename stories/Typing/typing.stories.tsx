@@ -7,11 +7,14 @@ export default {
     info: { inline: true },
   },
 };
-export const TypingStory = () => {
-  return (
-    <div>
-      <Typing tag="h1">Test typing in packages</Typing>
-      <Local tag="h1">Test typing in packages local remastered</Local>
-    </div>
-  );
+// export const TypingStory = () => {
+//   return (
+//     <div>
+//       <Typing tag="h1">Test typing in packages</Typing>
+//       <Local tag="h1">Test typing in packages local remastered</Local>
+//     </div>
+//   );
+// };
+export const Test = () => {
+  return <h1>Test</h1>;
 };

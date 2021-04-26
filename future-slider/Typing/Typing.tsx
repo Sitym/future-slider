@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useInterval } from '../Common/useInterval';
 import css from './typing.stm.scss';
 export interface TypingProps {
@@ -37,12 +37,15 @@ export const Typing: FC<TypingProps> = ({
     }
   }, 100);
 
-  if (count === wordLength) {
+  useEffect(() => {
     const timer = setTimeout(() => {
-      setCount(0);
-      setWord('');
+      if (count === wordLength) {
+        setCount(0);
+        setWord('');
+      }
     }, 1000);
-  }
+    return () => clearTimeout(timer);
+  }, [count]);
   const child = (
     <>
       <span>{word}</span>

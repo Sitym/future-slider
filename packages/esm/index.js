@@ -65,7 +65,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$2 = ".slider-stm_container__14yVJ {\n  position: relative; }\n\n.slider-stm_wrapper__1COnn {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n\n.slider-stm_sliders__T28cV {\n  width: 100%;\n  height: 100%;\n  transform: translate3d(-100%, 0, 0);\n  padding: 0;\n  margin: 0;\n  white-space: nowrap; }\n\n.slider-stm_wrapper__1COnn:not(:hover) .slider-stm_arrow__1YRw1 {\n  opacity: 0;\n  transition: 0.5s; }\n\n.slider-stm_wrapper__1COnn:not(:hover) .slider-stm_dot_container__28c8- {\n  opacity: 0;\n  transition: 0.5s; }\n\n.slider-stm_arrow__1YRw1 {\n  position: absolute;\n  top: 50%;\n  transition: 0.5s;\n  transform: translateY(-50%);\n  border: none;\n  border-radius: 20px;\n  padding: 5px 10px;\n  cursor: pointer; }\n\n.slider-stm_left__3PFer {\n  left: 10px; }\n\n.slider-stm_right__2JclY {\n  right: 10px; }\n\n.slider-stm_dot_container__28c8- {\n  position: absolute;\n  height: 50px;\n  bottom: 0;\n  transition: 0.5s;\n  left: 50%;\n  transform: translateX(-50%);\n  display: inline-flex;\n  align-items: center;\n  justify-content: center; }\n\n.slider-stm_dot__3zbG7 {\n  width: 20px;\n  height: 20px;\n  margin-right: 10px;\n  cursor: pointer; }\n";
+var css_248z$2 = ".slider-stm_container__14yVJ {\n  position: relative; }\n  .slider-stm_container__14yVJ .slider-stm_wrapper__1COnn {\n    position: relative;\n    width: 100%;\n    height: 100%;\n    overflow: hidden; }\n    .slider-stm_container__14yVJ .slider-stm_wrapper__1COnn .slider-stm_sliders__T28cV {\n      width: 100%;\n      height: 100%;\n      transform: translate3d(-100%, 0, 0);\n      padding: 0;\n      margin: 0;\n      white-space: nowrap; }\n\n.slider-stm_wrapper__1COnn:not(:hover) .slider-stm_arrow__1YRw1 {\n  opacity: 0;\n  transition: 0.5s; }\n\n.slider-stm_wrapper__1COnn:not(:hover) .slider-stm_dot_container__28c8- {\n  opacity: 0;\n  transition: 0.5s; }\n\n.slider-stm_arrow__1YRw1 {\n  position: absolute;\n  top: 50%;\n  transition: 0.5s;\n  transform: translateY(-50%);\n  border: none;\n  border-radius: 20px;\n  padding: 5px 10px;\n  cursor: pointer; }\n\n.slider-stm_left__3PFer {\n  left: 10px; }\n\n.slider-stm_right__2JclY {\n  right: 10px; }\n\n.slider-stm_dot_container__28c8- {\n  position: absolute;\n  height: 50px;\n  bottom: 0;\n  transition: 0.5s;\n  left: 50%;\n  transform: translateX(-50%);\n  display: inline-flex;\n  align-items: center;\n  justify-content: center; }\n  .slider-stm_dot_container__28c8- .slider-stm_dot__3zbG7 {\n    width: 20px;\n    height: 20px;\n    margin-right: 10px;\n    cursor: pointer; }\n";
 var css$2 = {
   "container": "slider-stm_container__14yVJ",
   "wrapper": "slider-stm_wrapper__1COnn",
@@ -500,14 +500,17 @@ var Typing = function Typing(_a) {
       });
     }
   }, 100);
-
-  if (count === wordLength) {
-    setTimeout(function () {
-      setCount(0);
-      setWord('');
+  useEffect(function () {
+    var timer = setTimeout(function () {
+      if (count === wordLength) {
+        setCount(0);
+        setWord('');
+      }
     }, 1000);
-  }
-
+    return function () {
+      return clearTimeout(timer);
+    };
+  }, [count]);
   var child = /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("span", null, word), /*#__PURE__*/React.createElement("span", {
     className: css.typed + " " + (count === wordLength || !count ? "" + css.blink : '')
   }, "|"));
