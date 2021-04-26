@@ -65,33 +65,33 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z$2 = ".slider-stm_container__213S- {\n  position: relative;\n}\n.slider-stm_wrapper__1O_lh {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n}\n.slider-stm_sliders__3DQCb {\n  width: 100%;\n  height: 100%;\n  transform: translate3d(-100%, 0, 0);\n  padding: 0;\n  margin: 0;\n  white-space: nowrap;\n}\n.slider-stm_wrapper__1O_lh:not(:hover) .slider-stm_arrow__10fpq {\n  opacity: 0;\n  transition: 0.5s;\n}\n.slider-stm_wrapper__1O_lh:not(:hover) .slider-stm_dot_container__uDcra {\n  opacity: 0;\n  transition: 0.5s;\n}\n.slider-stm_arrow__10fpq {\n  position: absolute;\n  top: 50%;\n  transition: 0.5s;\n  transform: translateY(-50%);\n  border: none;\n  border-radius: 20px;\n  padding: 5px 10px;\n  cursor: pointer;\n}\n.slider-stm_left__3rpN5 {\n  left: 10px;\n}\n.slider-stm_right__1RtjJ {\n  right: 10px;\n}\n.slider-stm_dot_container__uDcra {\n  position: absolute;\n  height: 50px;\n  bottom: 0;\n  transition: 0.5s;\n  left: 50%;\n  transform: translateX(-50%);\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n}\n.slider-stm_dot__3ZiQY {\n  width: 20px;\n  height: 20px;\n  margin-right: 10px;\n  cursor: pointer;\n}\n";
+var css_248z$2 = ".slider-stm_container__14yVJ {\n  position: relative; }\n\n.slider-stm_wrapper__1COnn {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden; }\n\n.slider-stm_sliders__T28cV {\n  width: 100%;\n  height: 100%;\n  transform: translate3d(-100%, 0, 0);\n  padding: 0;\n  margin: 0;\n  white-space: nowrap; }\n\n.slider-stm_wrapper__1COnn:not(:hover) .slider-stm_arrow__1YRw1 {\n  opacity: 0;\n  transition: 0.5s; }\n\n.slider-stm_wrapper__1COnn:not(:hover) .slider-stm_dot_container__28c8- {\n  opacity: 0;\n  transition: 0.5s; }\n\n.slider-stm_arrow__1YRw1 {\n  position: absolute;\n  top: 50%;\n  transition: 0.5s;\n  transform: translateY(-50%);\n  border: none;\n  border-radius: 20px;\n  padding: 5px 10px;\n  cursor: pointer; }\n\n.slider-stm_left__3PFer {\n  left: 10px; }\n\n.slider-stm_right__2JclY {\n  right: 10px; }\n\n.slider-stm_dot_container__28c8- {\n  position: absolute;\n  height: 50px;\n  bottom: 0;\n  transition: 0.5s;\n  left: 50%;\n  transform: translateX(-50%);\n  display: inline-flex;\n  align-items: center;\n  justify-content: center; }\n\n.slider-stm_dot__3zbG7 {\n  width: 20px;\n  height: 20px;\n  margin-right: 10px;\n  cursor: pointer; }\n";
 var css$2 = {
-  "container": "slider-stm_container__213S-",
-  "wrapper": "slider-stm_wrapper__1O_lh",
-  "sliders": "slider-stm_sliders__3DQCb",
-  "arrow": "slider-stm_arrow__10fpq",
-  "dot_container": "slider-stm_dot_container__uDcra",
-  "left": "slider-stm_left__3rpN5",
-  "right": "slider-stm_right__1RtjJ",
-  "dot": "slider-stm_dot__3ZiQY"
+  "container": "slider-stm_container__14yVJ",
+  "wrapper": "slider-stm_wrapper__1COnn",
+  "sliders": "slider-stm_sliders__T28cV",
+  "arrow": "slider-stm_arrow__1YRw1",
+  "dot_container": "slider-stm_dot_container__28c8-",
+  "left": "slider-stm_left__3PFer",
+  "right": "slider-stm_right__2JclY",
+  "dot": "slider-stm_dot__3zbG7"
 };
 styleInject(css_248z$2);
 
-var css_248z$1 = ".slide-stm_item__yXB6Y {\n  display: inline-block;\n  vertical-align: top;\n  width: 100%;\n  height: 100%;\n}\n.slide-stm_inner__RhBi1 {\n  width: 100%;\n  height: 100%;\n}\n.slide-stm_flex__3NjoX {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  width: 100%;\n}\n.slide-stm_topLeft__3uPlx {\n  align-items: flex-start;\n}\n.slide-stm_topCenter__38vdi {\n  align-items: center;\n}\n.slide-stm_topRight__17Nfr {\n  align-items: flex-end;\n}\n.slide-stm_centerRight__2waYk {\n  justify-content: center;\n  align-items: flex-end;\n}\n.slide-stm_centerLeft__Hj3XW {\n  justify-content: center;\n  align-items: flex-start;\n}\n.slide-stm_center__1PpqE {\n  justify-content: center;\n  align-items: center;\n}\n.slide-stm_bottomLeft__16pX8 {\n  justify-content: flex-start;\n}\n.slide-stm_bottomRight__3vX6c {\n  justify-content: flex-end;\n}\n.slide-stm_bottomCenter__3GnxM {\n  justify-content: flex-end;\n  align-items: center;\n}\n";
+var css_248z$1 = ".slide-stm_item__3nbXB {\n  display: inline-block;\n  vertical-align: top;\n  width: 100%;\n  height: 100%; }\n\n.slide-stm_inner__3IIX_ {\n  width: 100%;\n  height: 100%; }\n\n.slide-stm_flex__1a8IR {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  width: 100%; }\n\n.slide-stm_topLeft__2p-4S {\n  align-items: flex-start; }\n\n.slide-stm_topCenter__tlS17 {\n  align-items: center; }\n\n.slide-stm_topRight__3U4cL {\n  align-items: flex-end; }\n\n.slide-stm_centerRight__15AsZ {\n  justify-content: center;\n  align-items: flex-end; }\n\n.slide-stm_centerLeft__HR8p7 {\n  justify-content: center;\n  align-items: flex-start; }\n\n.slide-stm_center__FNl8Z {\n  justify-content: center;\n  align-items: center; }\n\n.slide-stm_bottomLeft__YqbMV {\n  justify-content: flex-start; }\n\n.slide-stm_bottomRight__2Np13 {\n  justify-content: flex-end; }\n\n.slide-stm_bottomCenter__veSCw {\n  justify-content: flex-end;\n  align-items: center; }\n";
 var css$1 = {
-  "item": "slide-stm_item__yXB6Y",
-  "inner": "slide-stm_inner__RhBi1",
-  "flex": "slide-stm_flex__3NjoX",
-  "topLeft": "slide-stm_topLeft__3uPlx",
-  "topCenter": "slide-stm_topCenter__38vdi",
-  "topRight": "slide-stm_topRight__17Nfr",
-  "centerRight": "slide-stm_centerRight__2waYk",
-  "centerLeft": "slide-stm_centerLeft__Hj3XW",
-  "center": "slide-stm_center__1PpqE",
-  "bottomLeft": "slide-stm_bottomLeft__16pX8",
-  "bottomRight": "slide-stm_bottomRight__3vX6c",
-  "bottomCenter": "slide-stm_bottomCenter__3GnxM"
+  "item": "slide-stm_item__3nbXB",
+  "inner": "slide-stm_inner__3IIX_",
+  "flex": "slide-stm_flex__1a8IR",
+  "topLeft": "slide-stm_topLeft__2p-4S",
+  "topCenter": "slide-stm_topCenter__tlS17",
+  "topRight": "slide-stm_topRight__3U4cL",
+  "centerRight": "slide-stm_centerRight__15AsZ",
+  "centerLeft": "slide-stm_centerLeft__HR8p7",
+  "center": "slide-stm_center__FNl8Z",
+  "bottomLeft": "slide-stm_bottomLeft__YqbMV",
+  "bottomRight": "slide-stm_bottomRight__2Np13",
+  "bottomCenter": "slide-stm_bottomCenter__veSCw"
 };
 styleInject(css_248z$1);
 
@@ -455,11 +455,11 @@ function _typeof(obj) {
   return _typeof(obj);
 }
 
-var css_248z = ".typing-stm_typed__2aKCR {\n  opacity: 1;\n}\n.typing-stm_blink__ixAq3 {\n  animation: typing-stm_typedCursor__pMoJu 0.7s infinite;\n  -webkit-animation: typing-stm_typedCursor__pMoJu 0.7s infinite;\n  animation: typing-stm_typedCursor__pMoJu 0.7s infinite;\n}\n@keyframes typing-stm_typedCursor__pMoJu {\n  50% {\n    opacity: 0;\n  }\n}\n@-webkit-keyframes typing-stm_typedCursor__pMoJu {\n  0% {\n    opacity: 1;\n  }\n  50% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n";
+var css_248z = ".typing-stm_typed__3wKI3 {\n  opacity: 1; }\n\n.typing-stm_blink__1MbOC {\n  animation: typing-stm_typedCursor__1YaQo 0.7s infinite;\n  -webkit-animation: typing-stm_typedCursor__1YaQo 0.7s infinite;\n  animation: typing-stm_typedCursor__1YaQo 0.7s infinite; }\n\n@keyframes typing-stm_typedCursor__1YaQo {\n  50% {\n    opacity: 0; } }\n\n@-webkit-keyframes typing-stm_typedCursor__1YaQo {\n  0% {\n    opacity: 1; }\n  50% {\n    opacity: 0; }\n  100% {\n    opacity: 1; } }\n";
 var css = {
-  "typed": "typing-stm_typed__2aKCR",
-  "blink": "typing-stm_blink__ixAq3",
-  "typedCursor": "typing-stm_typedCursor__pMoJu"
+  "typed": "typing-stm_typed__3wKI3",
+  "blink": "typing-stm_blink__1MbOC",
+  "typedCursor": "typing-stm_typedCursor__1YaQo"
 };
 styleInject(css_248z);
 

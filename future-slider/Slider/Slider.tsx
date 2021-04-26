@@ -6,12 +6,11 @@ import React, {
   useEffect,
   ReactChild,
 } from 'react';
-import css from './slider.stm.css';
+import css from './slider.stm.scss';
 import { SliderItem, SliderItemProps } from '../SliderItem';
 import { useInterval } from '../Common/useInterval';
 import { Dot } from './dot';
 import { useTimeout } from '../Common/useTimeout';
-
 export interface SliderProps {
   children: SliderItemProps[] | ReactNode;
   className?: string;

@@ -1,5 +1,5 @@
 import React, { CSSProperties } from 'react';
-import css from './slide.stm.css';
+import css from './slide.stm.scss';
 export interface SliderItemProps {
   children?: React.ReactNode;
   className?: string;

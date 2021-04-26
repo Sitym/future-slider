@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { useInterval } from '../Common/useInterval';
-import css from './typing.stm.css';
+import css from './typing.stm.scss';
 export interface TypingProps {
   tag?: string;
   className?: string;
