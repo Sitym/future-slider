@@ -1,5 +1,5 @@
 import React from 'react';
-import { Slider, SliderItem, Typing } from '../../packages/esm';
+import { Slider, SliderItem, Typing } from '../../packages/';
 
 export const CustomSlider = () => {
   const styleSlide = (bg: string) => {
@@ -16,7 +16,6 @@ export const CustomSlider = () => {
         id="id"
         style={{ letterSpacing: 2 }}
         arrowSize={5}
-        height="100vh"
         arrowColor="#ccc"
         autoPlay={6000}
       >
@@ -25,14 +24,24 @@ export const CustomSlider = () => {
           content="center"
           style={styleSlide('#000')}
         >
-          <Typing tag="h1">Lorem ipsum dolor sit</Typing>
+          <div style={{ whiteSpace: 'normal', height: 200 }}>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Inventore tempora repellat delectus nobis ullam rerum ad
+            provident atque incidunt, saepe totam velit praesentium
+            soluta. Sequi vero neque explicabo consequatur mollitia.
+          </div>
         </SliderItem>
         <SliderItem
           index={2}
           content="center"
           style={styleSlide('#f00')}
         >
-          <Typing tag="h1">Lorem ipsum dolor sit</Typing>
+          <div style={{ whiteSpace: 'normal' }}>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            Inventore tempora repellat delectus nobis ullam rerum ad
+            provident atque incidunt, saepe totam velit praesentium
+            soluta. Sequi vero neque explicabo consequatur mollitia.
+          </div>
         </SliderItem>
       </Slider>
     </div>
